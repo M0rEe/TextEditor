@@ -325,6 +325,7 @@ namespace textEditor
 				| System::Windows::Forms::Keys::F));
 			this->findAllToolStripMenuItem1->Size = System::Drawing::Size(229, 26);
 			this->findAllToolStripMenuItem1->Text = L"Find all";
+			this->findAllToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Main::findAllToolStripMenuItem1_Click);
 			// 
 			// toolStripDropDownButton3
 			// 
@@ -595,7 +596,9 @@ private: System::Void aboutToolStripMenuItem_Click(System::Object^ sender, Syste
 private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	updating = true;
 	btnInsertUpdate->Text = "Insert";
-	MessageBox::Show("You have selected line number "+textBox->GetItemText(textBox->SelectedIndex));
+	if (textBox->SelectionMode==SelectionMode::One) 
+		MessageBox::Show("You have selected line number "+textBox->GetItemText(textBox->SelectedIndex));
+	
 }
 
 private: System::Void boxInsertUpdate_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
@@ -608,46 +611,60 @@ private: System::Void btnDelete_Click(System::Object^ sender, System::EventArgs^
 	list<string>temp = core::fromListBox(textBox);
 	//handling nonselection delete
 	int lineSelected;
-	if (textBox->SelectedIndex >= 0)
-		lineSelected = textBox->SelectedIndex;
+	if (!temp.empty()) {
+		if (textBox->SelectedIndex >= 0)
+			lineSelected = textBox->SelectedIndex;
+		else
+			lineSelected = textBox->Items->Count - 1;
+	
+		temp=core::Delete(lineSelected,temp);
+	
+		MessageBox::Show("You have deleted line number " + lineSelected);
+		fromList(textBox,temp);
+	}
 	else
-		lineSelected = textBox->Items->Count - 1;
-	
-	temp=core::Delete(lineSelected,temp);
-	
-	MessageBox::Show("You have deleted line number " + lineSelected);
-	fromList(textBox,temp);
+	{
+		MessageBox::Show("the list is already empty !");
+	}
 	updating = false;
 }
 
 private: System::Void btnUpdate_Click(System::Object^ sender, System::EventArgs^ e) {
 	list<string>temp = core::fromListBox(textBox);
 	int lineSelected;
-	string lineUpdate = core::convertToString(boxInsertUpdate->Text);
-	if (textBox->SelectedIndex >= 0)
-		lineSelected = textBox->SelectedIndex;
-	else
-		lineSelected = textBox->Items->Count - 1;
+	if (!temp.empty()) {
+		string lineUpdate = core::convertToString(boxInsertUpdate->Text);
+		if (textBox->SelectedIndex >= 0)
+			lineSelected = textBox->SelectedIndex;
+		else
+			lineSelected = textBox->Items->Count - 1;
 
-	temp = core::update(lineSelected,lineUpdate, temp);
-	
-	updating = false;
-	fromList(textBox, temp);
-	boxInsertUpdate->Text = "";
+		temp = core::update(lineSelected,lineUpdate, temp);
+		
+		updating = false;
+		fromList(textBox, temp);
+		boxInsertUpdate->Text = "";
+	}
+	else
+	{
+		MessageBox::Show("the list is already empty !");
+	}
 }
 private: System::Void btnFindAll_Click(System::Object^ sender, System::EventArgs^ e) {
 	list<string>temp = core::fromListBox(textBox);
 	string findst = core::convertToString(boxFind->Text);
-	textBox->SelectionMode= SelectionMode::MultiExtended;
-	list<int>foundlist=core::FindAll(findst,temp);
-	for (auto it:foundlist)
-	{
-		textBox->SetSelected(it, true);
+	if (findst!="") {
+		textBox->SelectionMode= SelectionMode::MultiExtended;
+		list<int>foundlist=core::FindAll(findst,temp);
+		for (auto it:foundlist)
+		{
+			textBox->SetSelected(it, true);
+		}
 	}
-	/*
-	int foundLine;
-	foundLine = core::find(findst,temp);
-	textBox->SelectedIndex = foundLine;*/
+	else
+	{
+		MessageBox::Show("there is now word to find !");
+	}
 }
 private: System::Void boxFind_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 	if (e->KeyValue == (int)Keys::Return)
@@ -668,6 +685,9 @@ private: System::Void btnReplace_Click(System::Object^ sender, System::EventArgs
 	string replacest = core::convertToString(boxReplace->Text);
 	temp = core::ReplaceAll(temp, findst, replacest);
 	fromList(textBox, temp);
+}
+private: System::Void findAllToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+	btnFindAll->PerformClick();
 }
 };
 
