@@ -22,7 +22,6 @@ public:
 	static list<string> Delete(int line, list<string>);
 	static int find(string , list<string>);
 	static list<int> FindAll(string s, list<string>& l);
-		
 	static list<string> ReplaceAll(list<string>, string oldst, string newst);
 
 };

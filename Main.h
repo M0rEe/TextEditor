@@ -34,7 +34,7 @@ namespace textEditor
 
 	private: System::Windows::Forms::ToolStripMenuItem^ findAllToolStripMenuItem1;
 	private: System::Windows::Forms::ListBox^ textBox;
-	private: System::Windows::Forms::TextBox^ readonlyBox;
+
 	private: System::Windows::Forms::Button^ btnUpdate;
 	private: System::Windows::Forms::Button^ btnDelete;
 
@@ -157,7 +157,6 @@ namespace textEditor
 			this->btnInsertUpdate = (gcnew System::Windows::Forms::Button());
 			this->boxInsertUpdate = (gcnew System::Windows::Forms::TextBox());
 			this->textBox = (gcnew System::Windows::Forms::ListBox());
-			this->readonlyBox = (gcnew System::Windows::Forms::TextBox());
 			this->btnUpdate = (gcnew System::Windows::Forms::Button());
 			this->btnDelete = (gcnew System::Windows::Forms::Button());
 			this->toolStrip1->SuspendLayout();
@@ -180,7 +179,7 @@ namespace textEditor
 			this->btnFindAll->Location = System::Drawing::Point(188, 47);
 			this->btnFindAll->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnFindAll->Name = L"btnFindAll";
-			this->btnFindAll->Size = System::Drawing::Size(75, 32);
+			this->btnFindAll->Size = System::Drawing::Size(108, 32);
 			this->btnFindAll->TabIndex = 4;
 			this->btnFindAll->Text = L"Find all";
 			this->btnFindAll->UseVisualStyleBackColor = false;
@@ -191,7 +190,7 @@ namespace textEditor
 			this->btnReplace->BackColor = System::Drawing::SystemColors::Control;
 			this->btnReplace->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->btnReplace->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-			this->btnReplace->Location = System::Drawing::Point(448, 47);
+			this->btnReplace->Location = System::Drawing::Point(481, 47);
 			this->btnReplace->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnReplace->Name = L"btnReplace";
 			this->btnReplace->Size = System::Drawing::Size(99, 31);
@@ -205,7 +204,7 @@ namespace textEditor
 			this->boxReplace->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Suggest;
 			this->boxReplace->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::RecentlyUsedList;
 			this->boxReplace->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-			this->boxReplace->Location = System::Drawing::Point(269, 48);
+			this->boxReplace->Location = System::Drawing::Point(302, 48);
 			this->boxReplace->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->boxReplace->Name = L"boxReplace";
 			this->boxReplace->Size = System::Drawing::Size(172, 30);
@@ -233,7 +232,7 @@ namespace textEditor
 			this->toolStripDropDownButton1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripDropDownButton1.Image")));
 			this->toolStripDropDownButton1->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripDropDownButton1->Name = L"toolStripDropDownButton1";
-			this->toolStripDropDownButton1->Size = System::Drawing::Size(66, 24);
+			this->toolStripDropDownButton1->Size = System::Drawing::Size(66, 28);
 			this->toolStripDropDownButton1->Text = L"File";
 			// 
 			// openToolStripMenuItem
@@ -289,7 +288,7 @@ namespace textEditor
 			this->toolStripDropDownButton2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripDropDownButton2.Image")));
 			this->toolStripDropDownButton2->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripDropDownButton2->Name = L"toolStripDropDownButton2";
-			this->toolStripDropDownButton2->Size = System::Drawing::Size(69, 24);
+			this->toolStripDropDownButton2->Size = System::Drawing::Size(69, 28);
 			this->toolStripDropDownButton2->Text = L"Edit";
 			// 
 			// undoToolStripMenuItem
@@ -333,7 +332,7 @@ namespace textEditor
 			this->toolStripDropDownButton3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripDropDownButton3.Image")));
 			this->toolStripDropDownButton3->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripDropDownButton3->Name = L"toolStripDropDownButton3";
-			this->toolStripDropDownButton3->Size = System::Drawing::Size(75, 24);
+			this->toolStripDropDownButton3->Size = System::Drawing::Size(75, 28);
 			this->toolStripDropDownButton3->Text = L"View";
 			// 
 			// statusBarToolStripMenuItem
@@ -353,7 +352,7 @@ namespace textEditor
 			this->toolStripDropDownButton4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripDropDownButton4.Image")));
 			this->toolStripDropDownButton4->ImageTransparentColor = System::Drawing::Color::Magenta;
 			this->toolStripDropDownButton4->Name = L"toolStripDropDownButton4";
-			this->toolStripDropDownButton4->Size = System::Drawing::Size(89, 24);
+			this->toolStripDropDownButton4->Size = System::Drawing::Size(89, 28);
 			this->toolStripDropDownButton4->Text = L"Credits";
 			// 
 			// viewHelpToolStripMenuItem
@@ -400,32 +399,21 @@ namespace textEditor
 			// 
 			// textBox
 			// 
+			this->textBox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->textBox->FormattingEnabled = true;
 			this->textBox->ItemHeight = 16;
 			this->textBox->Location = System::Drawing::Point(11, 89);
 			this->textBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->textBox->Name = L"textBox";
-			this->textBox->Size = System::Drawing::Size(955, 500);
+			this->textBox->Size = System::Drawing::Size(954, 500);
 			this->textBox->TabIndex = 14;
 			this->textBox->SelectedIndexChanged += gcnew System::EventHandler(this, &Main::listBox1_SelectedIndexChanged);
 			// 
-			// readonlyBox
-			// 
-			this->readonlyBox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->readonlyBox->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-			this->readonlyBox->Location = System::Drawing::Point(11, 89);
-			this->readonlyBox->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->readonlyBox->Multiline = true;
-			this->readonlyBox->Name = L"readonlyBox";
-			this->readonlyBox->ReadOnly = true;
-			this->readonlyBox->ScrollBars = System::Windows::Forms::ScrollBars::Both;
-			this->readonlyBox->Size = System::Drawing::Size(955, 504);
-			this->readonlyBox->TabIndex = 11;
-			// 
 			// btnUpdate
 			// 
+			this->btnUpdate->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->btnUpdate->BackColor = System::Drawing::SystemColors::Control;
 			this->btnUpdate->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
 			this->btnUpdate->Location = System::Drawing::Point(873, 48);
@@ -439,9 +427,10 @@ namespace textEditor
 			// 
 			// btnDelete
 			// 
+			this->btnDelete->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->btnDelete->BackColor = System::Drawing::SystemColors::Control;
 			this->btnDelete->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-			this->btnDelete->Location = System::Drawing::Point(781, 48);
+			this->btnDelete->Location = System::Drawing::Point(792, 48);
 			this->btnDelete->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDelete->Name = L"btnDelete";
 			this->btnDelete->Size = System::Drawing::Size(75, 31);
@@ -460,7 +449,6 @@ namespace textEditor
 			this->Controls->Add(this->textBox);
 			this->Controls->Add(this->btnInsertUpdate);
 			this->Controls->Add(this->boxInsertUpdate);
-			this->Controls->Add(this->readonlyBox);
 			this->Controls->Add(this->toolStrip1);
 			this->Controls->Add(this->btnReplace);
 			this->Controls->Add(this->boxReplace);
@@ -596,8 +584,8 @@ private: System::Void aboutToolStripMenuItem_Click(System::Object^ sender, Syste
 private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	updating = true;
 	btnInsertUpdate->Text = "Insert";
-	if (textBox->SelectionMode==SelectionMode::One) 
-		MessageBox::Show("You have selected line number "+textBox->GetItemText(textBox->SelectedIndex));
+
+	boxInsertUpdate->Text = textBox->SelectedItem->ToString();
 	
 }
 
